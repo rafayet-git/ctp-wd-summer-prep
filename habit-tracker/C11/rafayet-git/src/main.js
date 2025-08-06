@@ -1,16 +1,7 @@
+'use strict';
 
-const habits = []
-
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    const data = new FormData(event.target);
-
-    const habit = {
-        id: Date.now(),
-        name: data.get('name'),
-        frequency: data.get('frequency'),
-    };
-
-    habits.push(habit);
-}
+const form = document.getElementById('habit_form')
+const habitList = document.getElementById('habit_list')
+const currentStreakBtn = document.getElementById('current_streak')
+const longestStreakBtn = document.getElementById('longest_streak')
+const completedHabitsBtn = document.getElementById('completed_habits')
