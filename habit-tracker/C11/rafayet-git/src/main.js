@@ -21,7 +21,6 @@ Habits object structure:
     longestStreak: 10, // Longest streak in days
     totalCompletions: 25, // Total times completed (every targetStreak days)
     completionDates: ['2025-07-01', '2025-08-02'], // Array of completion dates (YYYY-MM-DD)
-    createdAt: '2025-08-01', // Date when created (YYYY-MM-DD)
     lastCompleted: '2025-08-04', // Last completion date (YYYY-MM-DD)
 }
     Use timestamps 
@@ -218,12 +217,12 @@ const deleteHabit = (id) => {
     const modalButtons = document.createElement('div');
     modalButtons.className = 'modal-buttons';
     const modalDelete = document.createElement('button');
-    modalDelete.className = 'btn-primary';
+    modalDelete.className = 'btn btn--primary';
     modalDelete.textContent = 'Delete';
     modalButtons.appendChild(modalDelete);
 
     const modalCancel = document.createElement('button');
-    modalCancel.className = 'btn-secondary';
+    modalCancel.className = 'btn btn--secondary';
     modalCancel.textContent = 'Cancel';
     modalButtons.appendChild(modalCancel);
 
@@ -299,18 +298,18 @@ function renderHTML() {
         const actionsContainer = document.createElement('div');
         actionsContainer.className = 'habit-actions';
         
-        const createButton = (text, className, clickHandler) => {
+        const createButton = (text, variant, clickHandler) => {
             const button = document.createElement('button');
-            button.className = `habit-btn ${className}`;
+            button.className = `btn btn--${variant}`;
             button.textContent = text;
             button.addEventListener('click', () => clickHandler(habit.id));
             actionsContainer.appendChild(button);
         }
         
-        createButton('Complete Today', 'complete', completeHabit);
-        createButton('View Dates', 'view-dates', showCompletionDates);
-        createButton('Edit', 'edit', editHabit);
-        createButton('Delete', 'delete', deleteHabit);
+        createButton('Complete Today', 'success', completeHabit);
+        createButton('View Dates', 'info', showCompletionDates);
+        createButton('Edit', 'warning', editHabit);
+        createButton('Delete', 'danger', deleteHabit);
 
         li.appendChild(actionsContainer);
         
@@ -342,7 +341,6 @@ form.addEventListener('submit', (event) => {
         longestStreak: 0,
         totalCompletions: 0,
         completionDates: [],
-        createdAt: Date.now(),
         lastCompleted: null
     }
 
