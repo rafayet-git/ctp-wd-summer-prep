@@ -9,44 +9,72 @@
 </head>
 <body>
 
-  
-  <!-- **Deliverables**:
-- Basic HTML structure with forms for adding habits
-- JavaScript functions for habit CRUD operations
-- Streak calculation and progress tracking logic
-- Local storage implementation for data persistence
-- Enhanced CSS styling building on the template foundation
-
-**Core Features to Implement**:
-- Add new habits with custom names and target frequencies
-- Mark habits as complete for specific dates
-- Calculate current streaks and longest streaks
-- View habit completion history
-- Delete or edit existing habits -->
-
   <div class="root" id="root">
     <header class="header">
       <h1>Habit Tracker</h1>
     </header>
-    <form id="habit_form">
+    <form class="habit-form" id="habit-form">
       <h2>Add a New Habit</h2>
-      <label for="habit_name">Habit Name:</label>
-      <input id="habit_name" name="habit_name" type="text" required />
-      <label for="target_streak">Target Streak (days):</label>
-      <input id="target_streak" required name="target_streak" min="0" max="32" type="number" />
-      <button type="submit" id="submit_habit">Submit</button>
+      <label for="habit-name">Habit Name:</label>
+      <input id="habit-name" name="habit-name" type="text" required />
+      <label for="target-streak">Target Streak (days):</label>
+      <input id="target-streak" required name="target-streak" min="0" max="32" type="number" />
+      <button type="submit" class="submit-habit" id="submit-habit">Submit</button>
     </form>
     <!-- See current streak and longest streak and completed habits -->
-    <div class="habit_stats">
-      <h2>Habit Statistics</h2>
-      <p class="stat" id="current_streak">Current Streak</p>
-      <p class="stat" id="longest_streak">Longest Streak</p>
-      <p class="stat" id="completed_habits">Completed Habits</p>
+    <div class="habit-stats">
+      <h2>All Habit Statistics</h2>
+      <div class="stats-container">
+        <div class="stat-card" id="completed-habits-card">
+          <div class="stat-number" id="completed-habits">0</div>
+          <div class="stat-label">Completed Habits</div>
+        </div>
+        <div class="stat-card" id="broken-streaks-card">
+          <div class="stat-number" id="broken-streaks">0</div>
+          <div class="stat-label">Broken Streaks</div>
+        </div>
+      </div>
     </div>
-    <ul id="habit_list">
-      
-      <!-- habit number, name, target streak, current streak, buttons for edit and delete -->
-    </ul>
+    <div class="habit-list-container">
+      <h2>Your Habits</h2>
+      <ul class="habit-list" id="habit-list">
+        <!-- habit number, name, target streak, current streak, buttons for edit and delete -->
+      </ul>
+    </div>
+  </div>
+
+  <!-- Edit Habit Modal -->
+  <div id="edit-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Edit Habit</h3>
+        <span class="close" id="edit-close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <form class="edit-form" id="edit-form">
+          <label for="edit-habit-name">Habit Name:</label>
+          <input type="text" id="edit-habit-name" name="edit-habit-name" required>
+
+          <label for="edit-target-streak">Target Streak (days):</label>
+          <input type="number" id="edit-target-streak" name="edit-target-streak" min="1" max="32" required>
+
+          <div class="modal-buttons">
+            <button type="submit" class="btn-primary">Save</button>
+            <button type="button" class="btn-secondary" id="edit-cancel">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title"></h3>
+        <span class="modal-close" id="modal-close">&times;</span>
+      </div>
+      <div class="modal-body" id="modal-body"> </div>
+    </div>
   </div>
   
   <script type="module" src="/src/main.js"></script>
