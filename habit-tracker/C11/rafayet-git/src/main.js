@@ -119,7 +119,6 @@ const completeHabit = (id) => {
     }
     habit.longestStreak = Math.max(habit.longestStreak, habit.currentStreak);
 
-    // Build multi-line alert message
     modalParagraph.textContent = `Great! You've completed "${habit.name}" for today!\n`;
 
     const modalParagraphNotice = document.createElement('p');
@@ -257,6 +256,7 @@ function renderHTML() {
     habits.forEach((habit) => {
         const li = document.createElement('li');
         li.className = 'habit-item';
+        li.setAttribute('habit-id', habit.id);
         
         // Show habit name
         const habitName = document.createElement('h3');
@@ -350,7 +350,11 @@ form.addEventListener('submit', (event) => {
     
     // Reset form
     event.target.reset()
-})
+    
+    // Scroll to the newly created habit
+    const newHabit = document.querySelector(`[habit-id="${habit.id}"]`);
+    if (newHabit) newHabit.scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
 
 
 // Modal event listeners and functionality
